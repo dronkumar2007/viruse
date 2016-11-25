@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>AtoZ</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+
+    <link href="mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <script src="mobile/jquery-1.11.1.min.js"></script>
+    <script src="mobile/jquery.mobile-1.4.5.min.js"></script>
+
+    <link rel="stylesheet" href="themes/dronTheams.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link href="themes/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div data-role="page" id="home" data-theme="b">
+        <div data-role="header" id="header" data-position="fixed">
+
+        </div>
+        <div class="ui-content" style="min-height:25px;">
+
+        </div>
+        <div data-role="footer" id="footer" data-position="fixed">
+
+        </div>
+    </div>
+    <script>
+        $(document).on("pagecreate", "#home", function () {
+
+            $.get("header.html", function (data) {
+                $("#header").html(data).enhanceWithin();
+            });
+
+            $.get("footer.html", function (data) {
+                $("#footer").html(data).enhanceWithin();
+            });
+            
+            $.get("main.html", function (data) {
+                $(".ui-content").html(data).enhanceWithin();
+            });
+
+            $(".ui-content").on("tap", "a", function (e) {
+
+                var url = "";
+                
+                switch ($(this).prop("title")) {
+                    case 'A': url = "a.html";
+                        break;
+                    case 'B': url = "b.html";
+                        break;
+                    case 'C': url = "c.html";
+                        break;
+                    case 'D': url = "d.html";
+                        break;
+                    case 'E': url = "e.html";
+                        break;
+                }
+               
+                $.get(url, function (data) {
+                    $(".ui-content").html(data).enhanceWithin();
+                });
+
+            });
+        });
+    </script>
+</body>
+</html>
